@@ -1,2 +1,5 @@
-<h1>Development Env</h1>
-<app-post-component></app-post-component>
+<app-header></app-header>
+<main>
+  <app-post-create (createdPost)="onAddPosts($event)"></app-post-create>
+  <app-post-list [posts]="storedPosts" ></app-post-list>
+</main>
