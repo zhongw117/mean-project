@@ -5,5 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './post-create.component.html'
 })
 export class PostCreateComponent {
+  onAddComments() {
+    alert('Your comments is less than 5 words')
+  }
 
 }
