@@ -22,5 +22,6 @@ export class PostCreateComponent {
       content: form.value.content
       };
       this.createdPost.emit(post);
+    form.resetForm();
   }
 }
