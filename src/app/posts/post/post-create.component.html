@@ -1,5 +1,14 @@
-<h1>My first MEAN application!</h1>
-<textarea rows="5" cols="50" [(ngModel)]='newValue'></textarea>
-<br>
-<button (click)='onAddComments()'>Submit</button>
-<p>{{ inputCommnets }}</p>
+<mat-card>
+  <h2>My first MEAN application!</h2>
+  <mat-form-field>
+    <textarea matInput rows="5" cols="50" [(ngModel)]='newValue'></textarea>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color='primary'
+    (click)='onAddComments()'>
+    Submit
+  </button>
+  <p>{{ inputCommnets }}</p>
+</mat-card>
+
