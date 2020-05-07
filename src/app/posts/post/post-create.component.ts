@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
 })
 export class PostCreateComponent {
   newValue = 'Your comment';
+  inputCommnets = 'Comment'
   onAddComments() {
-    this.newValue = 'Your comments here';
+    this.inputCommnets = this.newValue;
   }
 }
