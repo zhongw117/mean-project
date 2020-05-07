@@ -1,16 +1,33 @@
 <mat-card>
   <h2 class='mat-3'>Create your posts here!</h2>
-  <mat-form-field>
-    <textarea matInput rows="5" cols="50" placeholder="Please enter here" [(ngModel)]='newPostTitle'></textarea>
-  </mat-form-field>
-  <mat-form-field>
-    <textarea matInput rows="5" cols="50" placeholder="Please enter here" [(ngModel)]='newPostContent'></textarea>
-  </mat-form-field>
-  <button
-    mat-raised-button
-    color='primary'
-    (click)='onAddComments()'>
-    Submit
-  </button>
+  <form (submit)="onAddComments(postForm)" #postForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Please enter here"
+        name="title"
+        ngModel
+        required
+        #title="ngModel">
+        <mat-error *ngIf="title.invalid">Please enter post's title</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        matInput
+        placeholder="Please enter here"
+        name="content"
+        ngModel
+        required
+        #content="ngModel">
+      </textarea>
+        <mat-error *ngIf="content.invalid">Please enter post's content</mat-error>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color='primary'
+      type='Submit'>
+      Submit
+    </button>
+  </form>
 </mat-card>
 
