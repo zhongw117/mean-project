@@ -5,7 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './post-create.component.html'
 })
 export class PostCreateComponent {
-  onAddComment() {
-    alert("Your comments was saved already!");
-  }
+
 }
