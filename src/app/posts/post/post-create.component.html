@@ -1,7 +1,10 @@
 <mat-card>
-  <h2>Leave your comments here!</h2>
+  <h2 class='mat-3'>Create your posts here!</h2>
   <mat-form-field>
-    <textarea matInput rows="5" cols="50" placeholder="Please enter here" [(ngModel)]='newValue'></textarea>
+    <textarea matInput rows="5" cols="50" placeholder="Please enter here" [(ngModel)]='newPostTitle'></textarea>
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput rows="5" cols="50" placeholder="Please enter here" [(ngModel)]='newPostContent'></textarea>
   </mat-form-field>
   <button
     mat-raised-button
@@ -9,6 +12,5 @@
     (click)='onAddComments()'>
     Submit
   </button>
-  <p>{{ inputCommnets }}</p>
 </mat-card>
 

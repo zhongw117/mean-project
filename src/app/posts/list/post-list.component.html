@@ -1,13 +1,11 @@
-<mat-accordion>
-  <mat-expansion-panel>
+<mat-accordion *ngIf="posts.length>0">
+  <mat-expansion-panel *ngFor="let post of posts">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Personal data
+         {{ post.title }}
       </mat-panel-title>
-      <mat-panel-description>
-        Type your name and age
-      </mat-panel-description>
     </mat-expansion-panel-header>
-      <p> It's a very good experience here</p>
+      <p>{{ post.content }}</p>
   </mat-expansion-panel>
 </mat-accordion>
+<p class='info-text mat-body-1' *ngIf="posts.length==0">No post yet.</p>
