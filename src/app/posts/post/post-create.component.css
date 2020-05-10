@@ -15,3 +15,8 @@ h1 {
 h2 {
   text-align: center;
 }
+
+
+mat-spinner {
+  margin: auto;
+}

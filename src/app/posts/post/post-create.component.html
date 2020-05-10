@@ -1,6 +1,7 @@
 <mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
   <h2 class='mat-3'>Create your posts here!</h2>
-  <form (submit)="onSaveComments(postForm)" #postForm="ngForm">
+  <form (submit)="onSaveComments(postForm)" #postForm="ngForm" *ngIf="!isLoading">
     <mat-form-field>
       <input
         matInput
