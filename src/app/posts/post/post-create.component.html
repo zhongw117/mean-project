@@ -1,12 +1,12 @@
 <mat-card>
   <h2 class='mat-3'>Create your posts here!</h2>
-  <form (submit)="onAddComments(postForm)" #postForm="ngForm">
+  <form (submit)="onSaveComments(postForm)" #postForm="ngForm">
     <mat-form-field>
       <input
         matInput
         placeholder="Please enter here"
         name="title"
-        ngModel
+        [ngModel]="post?.title"
         required
         #title="ngModel">
         <mat-error *ngIf="title.invalid">Please enter post's title</mat-error>
@@ -16,7 +16,7 @@
         matInput
         placeholder="Please enter here"
         name="content"
-        ngModel
+        [ngModel]="post?.content"
         required
         #content="ngModel">
       </textarea>
@@ -26,7 +26,7 @@
       mat-raised-button
       color='primary'
       type='Submit'>
-      Submit
+      save
     </button>
   </form>
 </mat-card>
