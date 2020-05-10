@@ -1,6 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const Post = require('./models/post');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb+srv://wilson:e8LbS5YH0wMcPgLw@nodejsangular-wuf0b.mongodb.net/node-angular?retryWrites=true&w=majority') // database name: node-angular
+  .then(() => {
+    console.log('Connected to Mongodb successfully!');
+  })
+  .catch(() => {
+    console.log('Connection failed');
+  })
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,31 +29,37 @@ app.use((req, res, next) => {
 });
 
 app.post('/api/posts', (req, res, next) => {
-  const post = req.body;
-  console.log(post);
-  res.status(201).json({
-    message: "Post added successfully!",
-    status: 200
+  const post = Post({
+    title: req.body.title,
+    content: req.body.content
   });
-})
-
-app.get('/api/posts', (req, res, next) => {
-  const posts = [
-    {
-      id: '343231',
-      title: 'first servier side pot',
-      content: 'ewrerq'
-    },
-    {
-      id: '2',
-      title: 'second servier side pot',
-      content: 'ewrerq'
-    }
-  ];
-  res.status(200).json({
-    message: 'Posts fetched successfully',
-    posts: posts
+  // console.log(post);
+  post.save().then(postData => {
+    res.status(201).json({
+      message: "Post added successfully!",
+      postId: postData.id
+    });
   });
 });
 
+app.get('/api/posts', (req, res, next) => {
+  Post.find().then(documents => {
+    res.status(200).json({
+      message: 'Posts fetched successfully',
+      posts: documents
+    });
+  });
+
+});
+
+app.delete('/api/posts/:id', (req, res, next) => {
+  console.log(req.params.id);
+  Post.deleteOne({_id: req.params.id}).then(result => {
+    console.log(result);
+    res.status(200).json({message: "Post deleted successfully"});
+  });
+})
 module.exports = app;
+
+
+// e8LbS5YH0wMcPgLw
