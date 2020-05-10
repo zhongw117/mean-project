@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const Post = require('./models/post');
 const mongoose = require('mongoose');
+const postsRoutes = require("./routes/posts");
 
 mongoose.connect('mongodb+srv://wilson:e8LbS5YH0wMcPgLw@nodejsangular-wuf0b.mongodb.net/node-angular?retryWrites=true&w=majority') // database name: node-angular
   .then(() => {
@@ -28,37 +28,8 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post('/api/posts', (req, res, next) => {
-  const post = Post({
-    title: req.body.title,
-    content: req.body.content
-  });
-  // console.log(post);
-  post.save().then(postData => {
-    res.status(201).json({
-      message: "Post added successfully!",
-      postId: postData.id
-    });
-  });
-});
+app.use("/api/posts",postsRoutes);
 
-app.get('/api/posts', (req, res, next) => {
-  Post.find().then(documents => {
-    res.status(200).json({
-      message: 'Posts fetched successfully',
-      posts: documents
-    });
-  });
-
-});
-
-app.delete('/api/posts/:id', (req, res, next) => {
-  console.log(req.params.id);
-  Post.deleteOne({_id: req.params.id}).then(result => {
-    console.log(result);
-    res.status(200).json({message: "Post deleted successfully"});
-  });
-})
 module.exports = app;
 
 
